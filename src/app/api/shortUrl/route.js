@@ -8,8 +8,8 @@ export function GET () {
 }
 
 export async function POST (request) {
-  const { url } = await request.json()
-  const shortUrl = Math.random().toString(36).substring(2, 5)
+  const { url, shortUrl } = await request.json()
+
   try {
     console.log(url, shortUrl)
     const data = await prisma.link.create({
@@ -18,7 +18,6 @@ export async function POST (request) {
         shortUrl
       }
     })
-    // const data = { url, shortUrl }
     return NextResponse.json(data)
   } catch (error) {
     console.error(error)
