@@ -12,13 +12,9 @@ import {
   useDisclosure,
   Link
 } from '@nextui-org/react'
+
 import { useRef, useState } from 'react'
 import { Toaster, toast } from 'sonner'
-
-interface Data {
-  shortUrl: string
-  url: string
-}
 
 export default function Home () {
   const inputRef = useRef<HTMLInputElement>(null)
@@ -41,6 +37,11 @@ export default function Home () {
           body: JSON.stringify({ url, shortUrl })
         })
         console.log(res)
+        if (res.ok) {
+          setShortUrl('')
+          inputRef.current.value = ''
+          toast.success('URL shortened successfully')
+        }
       } catch (error) {
         console.error(error)
       }
