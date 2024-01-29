@@ -5,6 +5,7 @@ import {
   Link
 } from '@nextui-org/react'
 import Image from 'next/image'
+import ThemeSwitch from './ThemeSwitch'
 
 export default function Header () {
   return (
@@ -17,6 +18,7 @@ export default function Header () {
             </NavbarBrand>
 
             <NavbarContent as="div" justify="end">
+              <ThemeSwitch></ThemeSwitch>
               <Link href="https://github.com/vcntttt/url-shortener">
                 <Image src="/githubIcon.svg" alt="github" width={24} height={24}></Image>
               </Link>
