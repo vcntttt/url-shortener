@@ -21,7 +21,7 @@ export default function RootLayout ({
       <head>
         <link rel="shortcut icon" href="/favicon.svg" type="image/x-icon"/>
       </head>
-      <body className={`${inter.className} bg-[#121212] text-white`}>
+      <body className={`${inter.className} dark:bg-[#121212] dark:text-white`}>
         <Providers>
           <Header/>
           {children}

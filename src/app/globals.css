@@ -1,3 +1,33 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.link-card .link {
+  display: inline-block;
+  max-width: 300px;
+  min-width: 300px;
+  white-space: nowrap;
+  overflow: hidden;
+  transition: width  0.s ease;
+}
+
+.link-card:hover .link.primary {
+  width: 0;
+  display: none
+}
+
+.link-card .link.secondary {
+  width: 0;
+  display: none;
+}
+
+.link-card:hover .link.secondary {
+  width: 100%;
+  display: inline-block;
+}
+
+.link-card .link span {
+  display: inline-block;
+  width: 100%;
+  transition: all 0.3s ease;
+}
