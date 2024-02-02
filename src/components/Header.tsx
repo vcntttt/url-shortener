@@ -6,6 +6,7 @@ import {
 } from '@nextui-org/react'
 import Image from 'next/image'
 import ThemeSwitch from './ThemeSwitch'
+import DbStatus from './DbStatus'
 
 export default function Header () {
   return (
@@ -18,8 +19,9 @@ export default function Header () {
             </NavbarBrand>
 
             <NavbarContent as="div" justify="end">
+              <DbStatus/>
               <ThemeSwitch></ThemeSwitch>
-              <Link href="https://github.com/vcntttt/url-shortener">
+              <Link target='_blank' href="https://github.com/vcntttt/url-shortener">
                 <Image src="/githubIcon.svg" alt="github" width={24} height={24}></Image>
               </Link>
             </NavbarContent>
