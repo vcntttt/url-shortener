@@ -78,7 +78,7 @@ export default function Home () {
         >
           Shorten
         </Button>
-        <Link href="/already-use" className="underline">
+        <Link href="/already-use" className="underline text-blue-400">
           see urls already in use
         </Link>
       </form>
