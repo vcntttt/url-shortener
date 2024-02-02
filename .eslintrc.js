@@ -1,3 +1,4 @@
+// aca van las modificaciones
 module.exports = {
   env: {
     browser: true,
@@ -27,6 +28,7 @@ module.exports = {
     "react-hooks/exhaustive-deps": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/no-misused-promises" : "off",
-    "@typescript-eslint/strict-boolean-expressions" : "off"
+    "@typescript-eslint/strict-boolean-expressions" : "off",
+    "@typescript-eslint/unbound-method" : "off",
   },
 };
