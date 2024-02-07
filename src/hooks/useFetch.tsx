@@ -1,9 +1,9 @@
 'use client'
-import { useUrlStore } from '@/store/urlStore'
+import { useUrlStore } from '@/store/'
 import { useEffect } from 'react'
 import { type URL } from '@/types'
 
-export default function useFetch () {
+export function useFetch () {
   const { setUrls, setDBStatus } = useUrlStore((state) => ({
     urls: state.urls,
     setUrls: state.setUrls,
@@ -12,7 +12,7 @@ export default function useFetch () {
 
   useEffect(() => {
     setDBStatus('loading')
-    fetch('/api/shortUrl/aaaaaaaaaa').then(async (res) => await res.json()).then((data: URL[]) => {
+    fetch('/api/shortUrl/').then(async (res) => await res.json()).then((data: URL[]) => {
       setUrls(data)
       setDBStatus('on')
     }).catch((error) => {
