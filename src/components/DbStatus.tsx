@@ -1,33 +1,15 @@
 'use client'
+import { useUrlStore } from '@/store/urlStore'
 import { Card, CardBody } from '@nextui-org/react'
-import { useState, useEffect } from 'react'
 
 const DBIndicator = () => {
-  const [dbStatus, setDbStatus] = useState('')
-
-  useEffect(() => {
-    const checkDbStatus = async () => {
-      try {
-        const response = await fetch('/api/dbHealth')
-        const status = await response.json()
-        if (status) {
-          setDbStatus('green')
-        } else {
-          setDbStatus('red')
-        }
-      } catch (error) {
-        setDbStatus('red')
-      }
-    }
-
-    checkDbStatus().catch(console.error)
-  }, [])
+  const dbStatus = useUrlStore((state) => state.dbStatus)
 
   return (
       <Card>
         <CardBody className='flex flex-row items-center gap-x-2'>
-          db: {dbStatus === 'green' ? 'on' : 'off'}
-          <span className='rounded-full h-3 w-3' style={{ backgroundColor: dbStatus }}>
+          db: {dbStatus ? 'on' : 'off'}
+          <span className='rounded-full h-3 w-3' style={{ backgroundColor: dbStatus ? 'green' : 'red' }}>
           </span>
         </CardBody>
       </Card>

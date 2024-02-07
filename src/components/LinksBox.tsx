@@ -3,12 +3,10 @@ import LinkCard from './LinkCard'
 
 interface Props {
   select: string
+  data: URL[]
 }
 
-export default async function LinksBox ({ select }: Props) {
-  // await new Promise((resolve) => setTimeout(resolve, 2000))
-  const res = await fetch('http://localhost:3000/api/shortUrl')
-  const data: URL[] = await res.json()
+export default function LinksBox ({ select, data }: Props) {
   return (
       <section className="grid grid-cols-3 gap-4">
         {data?.map((item: URL) => (

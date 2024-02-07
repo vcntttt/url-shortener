@@ -1,4 +1,5 @@
 'use client'
+import useFetch from '@/hooks/useFetch'
 import { RandomIcon } from '@/icons/RandomIcon'
 import {
   Input,
@@ -8,10 +9,9 @@ import {
   ModalHeader,
   ModalBody,
   ModalFooter,
-  useDisclosure,
-  Link
+  useDisclosure
 } from '@nextui-org/react'
-
+import Link from 'next/link'
 import { useRef, useState } from 'react'
 import { Toaster, toast } from 'sonner'
 
@@ -19,7 +19,7 @@ export default function Home () {
   const inputRef = useRef<HTMLInputElement>(null)
   const [shortUrl, setShortUrl] = useState('')
   const { isOpen, onOpen, onOpenChange } = useDisclosure()
-
+  useFetch()
   const handleSubmit: React.FormEventHandler = async (
     e: React.FormEvent<HTMLFormElement>
   ) => {
@@ -104,7 +104,9 @@ export default function Home () {
                         placeholder="Insert custom short url"
                         label="Short Url"
                         value={shortUrl}
-                        onChange={(e) => { setShortUrl(e.target.value) }}
+                        onChange={(e) => {
+                          setShortUrl(e.target.value)
+                        }}
                       />
                       <Button
                         isIconOnly
