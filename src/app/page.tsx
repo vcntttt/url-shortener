@@ -1,51 +1,15 @@
 'use client'
-import { useFetch, useValidate } from '@/hooks/'
+import { useFetch } from '@/hooks/'
 import Link from 'next/link'
-import { useState, useRef } from 'react'
+import { useRef } from 'react'
 import { Toaster, toast } from 'sonner'
 import { Input, Button, useDisclosure } from '@nextui-org/react'
 import UrlModal from '@/components/UrlModal'
-import { useUrlStore } from '@/store'
 
 export default function Home () {
-  const [shortUrl, setShortUrl] = useState('')
   const { isOpen, onOpenChange, onOpen } = useDisclosure()
   const inputRef = useRef<HTMLInputElement>(null)
-  const addUrl = useUrlStore((state) => state.addUrl)
   useFetch()
-  const { validateUrl } = useValidate()
-
-  const handleSubmit: React.FormEventHandler = async (
-    e: React.FormEvent<HTMLFormElement>
-  ) => {
-    e.preventDefault()
-    if (inputRef.current !== null) {
-      const url = inputRef.current.value
-      if (validateUrl(url)) {
-        toast.error('URL already exists')
-        return
-      }
-      const shortUrl = Math.random().toString(36).substring(2, 5)
-      try {
-        const res = await fetch('/api/shortUrl', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ url, shortUrl })
-        })
-        console.log(res)
-        if (res.ok) {
-          setShortUrl('')
-          inputRef.current.value = ''
-          addUrl({ shortUrl, url })
-          toast.success('URL shortened successfully')
-        }
-      } catch (error) {
-        console.error(error)
-      }
-    }
-  }
 
   return (
     <main className="flex min-h-screen flex-col items-center gap-y-6 p-24">
@@ -80,10 +44,7 @@ export default function Home () {
       <UrlModal
         isOpen={isOpen}
         onOpenChange={onOpenChange}
-        shortUrl={shortUrl}
-        setShortUrl={setShortUrl}
         url={inputRef.current?.value}
-        handleSubmit={handleSubmit}
       />
       <Toaster position="top-center" richColors />
     </main>
