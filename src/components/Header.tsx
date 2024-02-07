@@ -1,12 +1,12 @@
 import {
   Navbar,
   NavbarBrand,
-  NavbarContent,
-  Link
+  NavbarContent
 } from '@nextui-org/react'
 import Image from 'next/image'
 import ThemeSwitch from './ThemeSwitch'
 import DbStatus from './DbStatus'
+import Link from 'next/link'
 
 export default function Header () {
   return (
