@@ -4,7 +4,7 @@ import { devtools } from 'zustand/middleware'
 
 export const useUrlStore = create<UrlState>()(devtools((set) => ({
   urls: [],
-  dbStatus: false,
+  dbStatus: 'off',
   setUrls: (urls) => { set({ urls }) },
   setDBStatus: (dbStatus) => { set({ dbStatus }) }
 })))

@@ -11,10 +11,14 @@ export default function useFetch () {
   }))
 
   useEffect(() => {
-    fetch('/api/shortUrl').then(async (res) => await res.json()).then((data: URL[]) => {
+    setDBStatus('loading')
+    fetch('/api/shortUrl/aaaaaaaaaa').then(async (res) => await res.json()).then((data: URL[]) => {
       setUrls(data)
-      setDBStatus(true)
-    }).catch(console.error)
+      setDBStatus('on')
+    }).catch((error) => {
+      console.error(error)
+      setDBStatus('error')
+    })
   }, [])
 
   return {}

@@ -3,9 +3,11 @@ export interface URL {
   url: string
 }
 
+type status = 'on' | 'off' | 'loading' | 'error'
+
 export interface UrlState {
   urls: URL[]
-  dbStatus: boolean
+  dbStatus: status
   setUrls: (urls: URL[]) => void
-  setDBStatus: (dbStatus: boolean) => void
+  setDBStatus: (dbStatus: status) => void
 }

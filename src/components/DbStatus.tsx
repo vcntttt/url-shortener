@@ -4,12 +4,11 @@ import { Card, CardBody } from '@nextui-org/react'
 
 const DBIndicator = () => {
   const dbStatus = useUrlStore((state) => state.dbStatus)
-
   return (
       <Card>
         <CardBody className='flex flex-row items-center gap-x-2'>
-          db: {dbStatus ? 'on' : 'off'}
-          <span className='rounded-full h-3 w-3' style={{ backgroundColor: dbStatus ? 'green' : 'red' }}>
+          db: {dbStatus}
+          <span className='rounded-full h-3 w-3' style={{ backgroundColor: dbStatus === 'on' ? 'green' : 'red' }}>
           </span>
         </CardBody>
       </Card>
