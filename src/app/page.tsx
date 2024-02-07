@@ -1,32 +1,31 @@
 'use client'
-import useFetch from '@/hooks/useFetch'
-import { RandomIcon } from '@/icons/RandomIcon'
-import {
-  Input,
-  Button,
-  Modal,
-  ModalContent,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-  useDisclosure
-} from '@nextui-org/react'
+import { useFetch, useValidate } from '@/hooks/'
 import Link from 'next/link'
-import { useRef, useState } from 'react'
+import { useState, useRef } from 'react'
 import { Toaster, toast } from 'sonner'
+import { Input, Button, useDisclosure } from '@nextui-org/react'
+import UrlModal from '@/components/UrlModal'
+import { useUrlStore } from '@/store'
 
 export default function Home () {
-  const inputRef = useRef<HTMLInputElement>(null)
   const [shortUrl, setShortUrl] = useState('')
-  const { isOpen, onOpen, onOpenChange } = useDisclosure()
+  const { isOpen, onOpenChange, onOpen } = useDisclosure()
+  const inputRef = useRef<HTMLInputElement>(null)
+  const addUrl = useUrlStore((state) => state.addUrl)
   useFetch()
+  const { validateUrl } = useValidate()
+
   const handleSubmit: React.FormEventHandler = async (
     e: React.FormEvent<HTMLFormElement>
   ) => {
     e.preventDefault()
     if (inputRef.current !== null) {
       const url = inputRef.current.value
-
+      if (validateUrl(url)) {
+        toast.error('URL already exists')
+        return
+      }
+      const shortUrl = Math.random().toString(36).substring(2, 5)
       try {
         const res = await fetch('/api/shortUrl', {
           method: 'POST',
@@ -39,17 +38,13 @@ export default function Home () {
         if (res.ok) {
           setShortUrl('')
           inputRef.current.value = ''
+          addUrl({ shortUrl, url })
           toast.success('URL shortened successfully')
         }
       } catch (error) {
         console.error(error)
       }
     }
-  }
-
-  const randomize = () => {
-    const shortUrl = Math.random().toString(36).substring(2, 5)
-    setShortUrl(shortUrl)
   }
 
   return (
@@ -82,57 +77,14 @@ export default function Home () {
           see urls already in use
         </Link>
       </form>
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
-        <ModalContent>
-          {(onClose) => (
-            <>
-              <ModalHeader className="flex flex-col gap-1">
-                Choose a short URL
-              </ModalHeader>
-              <ModalBody>
-                <form className="flex justify-center flex-col gap-y-4">
-                  <>
-                    <h1>
-                      Your Link:
-                      <span className="ml-2 font-bold">
-                        {inputRef.current?.value}
-                      </span>
-                    </h1>
-                    <div className="flex gap-x-2 items-center">
-                      <Input
-                        type="text"
-                        placeholder="Insert custom short url"
-                        label="Short Url"
-                        value={shortUrl}
-                        onChange={(e) => {
-                          setShortUrl(e.target.value)
-                        }}
-                      />
-                      <Button
-                        isIconOnly
-                        color="default"
-                        onPress={randomize}
-                        className="flex h-[56px]"
-                      >
-                        <RandomIcon />
-                      </Button>
-                    </div>
-                  </>
-                </form>
-              </ModalBody>
-              <ModalFooter>
-                <Button
-                  color="primary"
-                  onPress={onClose}
-                  onClick={handleSubmit}
-                >
-                  Create link
-                </Button>
-              </ModalFooter>
-            </>
-          )}
-        </ModalContent>
-      </Modal>
+      <UrlModal
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+        shortUrl={shortUrl}
+        setShortUrl={setShortUrl}
+        url={inputRef.current?.value}
+        handleSubmit={handleSubmit}
+      />
       <Toaster position="top-center" richColors />
     </main>
   )
