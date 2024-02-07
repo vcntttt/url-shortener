@@ -10,4 +10,5 @@ export interface UrlState {
   dbStatus: status
   setUrls: (urls: URL[]) => void
   setDBStatus: (dbStatus: status) => void
+  addUrl: (url: URL) => void
 }
