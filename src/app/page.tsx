@@ -1,15 +1,20 @@
 'use client'
 import { useFetch } from '@/hooks/'
 import Link from 'next/link'
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { Toaster, toast } from 'sonner'
 import { Input, Button, useDisclosure } from '@nextui-org/react'
 import UrlModal from '@/components/UrlModal'
+import { useUrlStore } from '@/store'
 
 export default function Home () {
   const { isOpen, onOpenChange, onOpen } = useDisclosure()
+  const dbStatus = useUrlStore((state) => state.dbStatus)
   const inputRef = useRef<HTMLInputElement>(null)
-  useFetch()
+  const { fetchUrls } = useFetch()
+  useEffect(() => {
+    fetchUrls()
+  }, [])
 
   return (
     <main className="flex min-h-screen flex-col items-center gap-y-6 p-24">
@@ -29,7 +34,11 @@ export default function Home () {
               inputRef.current !== null &&
               inputRef.current.value.length > 0
             ) {
-              onOpen()
+              if (dbStatus === 'on') {
+                onOpen()
+              } else {
+                toast.error('Database is not connected')
+              }
             } else {
               toast.error('Please enter a url')
             }
