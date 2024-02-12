@@ -1,12 +1,12 @@
 import type { URL } from '@/types'
-import LinkCard from './LinkCard'
+import { LinkCard } from '@/components/already-use'
 
 interface Props {
   select: string
   data: URL[]
 }
 
-export default function LinksBox ({ select, data }: Props) {
+export function LinksBox ({ select, data }: Props) {
   return (
       <section className="grid grid-cols-3 gap-4">
         {data?.map((item: URL) => (

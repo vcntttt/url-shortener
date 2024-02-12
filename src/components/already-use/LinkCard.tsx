@@ -6,7 +6,7 @@ interface Props {
   secondUrl: string
 }
 
-const LinkCard = ({ primaryUrl, secondUrl }: Props) => {
+export const LinkCard = ({ primaryUrl, secondUrl }: Props) => {
   return (
     <Card className='w-full link-card'>
       <CardBody>
@@ -20,4 +20,3 @@ const LinkCard = ({ primaryUrl, secondUrl }: Props) => {
     </Card>
   )
 }
-export default LinkCard

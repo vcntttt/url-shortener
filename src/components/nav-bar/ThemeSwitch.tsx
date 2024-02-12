@@ -4,7 +4,8 @@ import { SunIcon } from '@/icons/SunIcon'
 import { MoonIcon } from '@/icons/MoonIcon'
 import { useTheme } from 'next-themes'
 import { useEffect, useState } from 'react'
-const ThemeSwitch = (props: SwitchProps) => {
+
+export const ThemeSwitcher = (props: SwitchProps) => {
   const {
     Component,
     slots,
@@ -48,8 +49,4 @@ const ThemeSwitch = (props: SwitchProps) => {
       </Component>
     </div>
   )
-}
-
-export default function ThemeSwitcher () {
-  return <ThemeSwitch/>
 }

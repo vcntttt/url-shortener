@@ -2,7 +2,7 @@
 import { useUrlStore } from '@/store/urlStore'
 import { Chip } from '@nextui-org/react'
 
-const DBIndicator = () => {
+export const DBStatus = () => {
   const dbStatus = useUrlStore((state) => state.dbStatus)
   const statusColors = {
     on: 'success',
@@ -11,10 +11,8 @@ const DBIndicator = () => {
     off: 'warning'
   }
   return (
-      <Chip color={statusColors[dbStatus] || 'default' as any}>
+      <Chip color={statusColors[dbStatus] || 'default' as any} className='text-white'>
           DB Status
       </Chip>
   )
 }
-
-export default DBIndicator

@@ -4,11 +4,10 @@ import {
   NavbarContent
 } from '@nextui-org/react'
 import Image from 'next/image'
-import ThemeSwitch from './ThemeSwitch'
-import DbStatus from './DbStatus'
 import Link from 'next/link'
+import { ThemeSwitcher, DBStatus } from '@/components/nav-bar'
 
-export default function Header () {
+export function Header () {
   return (
     <Navbar className="dark:bg-[#121212]">
             <NavbarBrand>
@@ -19,8 +18,8 @@ export default function Header () {
             </NavbarBrand>
 
             <NavbarContent as="div" justify="end">
-              <DbStatus/>
-              <ThemeSwitch></ThemeSwitch>
+              <DBStatus/>
+              <ThemeSwitcher></ThemeSwitcher>
               <Link target='_blank' href="https://github.com/vcntttt/url-shortener">
                 <Image src="/githubIcon.svg" alt="github" width={24} height={24}></Image>
               </Link>
