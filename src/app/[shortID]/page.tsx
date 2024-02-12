@@ -2,7 +2,7 @@ import { PrismaClient } from '@prisma/client'
 import { redirect } from 'next/navigation'
 
 interface Props {
-  params: {
+  params?: {
     shortID: string
   }
 }
@@ -10,7 +10,9 @@ interface Props {
 export default async function ShortIdPage ({ params }: Props) {
   const shortID = params?.shortID
   const prisma = new PrismaClient()
-
+  if (!shortID) {
+    redirect('/')
+  }
   const data = await prisma.link.findUnique({
     where: {
       shortUrl: shortID
