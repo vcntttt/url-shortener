@@ -17,9 +17,9 @@ export default function Home () {
   }, [])
 
   return (
-    <main className="flex min-h-screen flex-col items-center gap-y-6 p-24">
-      <h1 className="text-3xl font-bold">URL Shortener</h1>
-      <form className="flex flex-col gap-y-4 w-2/6 justify-center items-center">
+    <main className="flex min-h-screen flex-col items-center gap-y-6 p-10 md:p-24">
+      <h1 className=" md:text-3xl font-bold">URL Shortener</h1>
+      <form className="flex flex-col gap-y-4 w-full md:w-2/6 justify-center items-center">
         <Input
           type="url"
           placeholder="Enter url"

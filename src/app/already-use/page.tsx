@@ -14,8 +14,8 @@ export default function Page ({ searchParams }: { searchParams: { select: string
   }, [])
 
   return (
-    <main className="flex min-h-screen flex-col items-center gap-y-6 p-24">
-      <h1 className="text-3xl font-bold">URLs Already in Use</h1>
+    <main className="flex min-h-screen flex-col items-center gap-y-6 p-10 md:p-24">
+      <h1 className="md:text-3xl font-bold">URLs Already in Use</h1>
       <Switcher/>
       <LinksBox select={select} data={urls}/>
     </main>

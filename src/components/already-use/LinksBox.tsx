@@ -8,7 +8,7 @@ interface Props {
 
 export function LinksBox ({ select, data }: Props) {
   return (
-      <section className="grid grid-cols-3 gap-4">
+      <section className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {data?.map((item: URL) => (
           <LinkCard
             key={item.shortUrl}
