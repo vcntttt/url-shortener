@@ -1,5 +1,5 @@
 'use client'
-import { useSwitch, VisuallyHidden, type SwitchProps } from '@nextui-org/react'
+import { useSwitch, VisuallyHidden, type SwitchProps } from "@heroui/react"
 import { SunIcon } from '@/icons/SunIcon'
 import { MoonIcon } from '@/icons/MoonIcon'
 import { useTheme } from 'next-themes'

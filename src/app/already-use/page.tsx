@@ -1,17 +1,23 @@
 'use client'
-import { LinksBox, Switcher } from '@/components/already-use'
-import { useFetch } from '@/hooks'
+import { LinksBox } from '@/components/already-use/LinksBox'
+import { Switcher } from '@/components/already-use/Switcher'
 import { useUrlStore } from '@/store/urlStore'
-import { useEffect } from 'react'
+import { useEffect, use } from 'react';
 
-export default function Page ({ searchParams }: { searchParams: { select: string } }) {
+export default function Page(props: { searchParams: Promise<{ select: string }> }) {
+  const searchParams = use(props.searchParams);
   const select = searchParams?.select
   const urls = useUrlStore((state) => state.urls)
-  const { fetchUrls } = useFetch()
+  const setUrls = useUrlStore((state) => state.setUrls)
+
   useEffect(() => {
-    if (urls.length > 1) return
-    fetchUrls()
-  }, [])
+    async function fetchPosts() {
+      const res = await fetch('/api/shortUrl')
+      const data = await res.json()
+      setUrls(data)
+    }
+    fetchPosts()
+  }, [setUrls])
 
   return (
     <main className="flex min-h-screen flex-col items-center gap-y-6 p-10 md:p-24">

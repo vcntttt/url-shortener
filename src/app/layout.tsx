@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import Providers from './providers'
-import { Header } from '@/components/nav-bar'
+import { Header } from '@/components/nav-bar/Header'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -21,7 +21,7 @@ export default function RootLayout ({
       <head>
         <link rel="shortcut icon" href="/favicon.svg" type="image/x-icon"/>
       </head>
-      <body className={`${inter.className} dark:bg-[#121212] dark:text-white`}>
+      <body className={`${inter.className} bg-[#121212] dark text-white overflow-y-hidden h-screen`}>
         <Providers>
           <Header/>
           {children}

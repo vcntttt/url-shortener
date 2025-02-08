@@ -1,6 +1,6 @@
 'use client'
 import { useUrlStore } from '@/store/urlStore'
-import { Chip } from '@nextui-org/react'
+import { Chip } from '@heroui/react'
 
 export const DBStatus = () => {
   const dbStatus = useUrlStore((state) => state.dbStatus)
@@ -11,8 +11,11 @@ export const DBStatus = () => {
     off: 'warning'
   }
   return (
-      <Chip color={statusColors[dbStatus] || 'default' as any} className='text-white'>
-          DB Status
-      </Chip>
+    <Chip
+      color={statusColors[dbStatus] || ('default' as any)}
+      className="text-white"
+    >
+      DB Status
+    </Chip>
   )
 }

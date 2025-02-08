@@ -2,12 +2,13 @@ import { PrismaClient } from '@prisma/client'
 import { redirect } from 'next/navigation'
 
 interface Props {
-  params?: {
+  params?: Promise<{
     shortID: string
-  }
+  }>
 }
 
-export default async function ShortIdPage ({ params }: Props) {
+export default async function ShortIdPage (props: Props) {
+  const params = await props.params
   const shortID = params?.shortID
   const prisma = new PrismaClient()
   if (typeof shortID !== 'string') {

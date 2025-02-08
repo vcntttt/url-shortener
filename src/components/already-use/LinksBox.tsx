@@ -1,5 +1,5 @@
 import type { URL } from '@/types'
-import { LinkCard } from '@/components/already-use'
+import { LinkCard } from '@/components/already-use/LinkCard'
 
 interface Props {
   select: string

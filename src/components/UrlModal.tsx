@@ -1,5 +1,5 @@
 'use client'
-import { useValidate } from '@/hooks'
+import { useValidate } from '@/hooks/useValidate'
 import { RandomIcon } from '@/icons/RandomIcon'
 import { useUrlStore } from '@/store'
 import {
@@ -10,7 +10,7 @@ import {
   ModalHeader,
   ModalBody,
   ModalFooter
-} from '@nextui-org/react'
+} from "@heroui/react"
 import { useState } from 'react'
 import { toast } from 'sonner'
 
