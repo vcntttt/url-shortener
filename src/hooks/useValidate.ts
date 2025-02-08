@@ -1,4 +1,4 @@
-import { useUrlStore } from '@/store/'
+import { useUrlStore } from '@/store/urlStore'
 
 export function useValidate () {
   const urls = useUrlStore((state) => state.urls)

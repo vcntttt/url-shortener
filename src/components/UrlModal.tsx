@@ -1,7 +1,7 @@
 'use client'
 import { useValidate } from '@/hooks/useValidate'
 import { RandomIcon } from '@/icons/RandomIcon'
-import { useUrlStore } from '@/store'
+import { useUrlStore } from '@/store/urlStore'
 import {
   Input,
   Button,
@@ -58,6 +58,7 @@ export default function UrlModal ({
         }
       } catch (error) {
         console.error(error)
+        toast.error('Something went wrong, try again or contact the developer')
       }
     }
   }

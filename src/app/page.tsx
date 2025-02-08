@@ -1,11 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { Toaster, toast } from "sonner";
 import { Input, Button, useDisclosure } from "@heroui/react";
 import UrlModal from "@/components/UrlModal";
-import { useUrlStore } from "@/store";
+import { useUrlStore } from "@/store/urlStore";
 
 export default function Home() {
   const { isOpen, onOpenChange, onOpen } = useDisclosure();
