@@ -1,4 +1,5 @@
 'use client'
+
 import { useFetch } from '@/hooks/'
 import Link from 'next/link'
 import { useEffect, useRef } from 'react'
@@ -12,6 +13,7 @@ export default function Home () {
   const dbStatus = useUrlStore((state) => state.dbStatus)
   const inputRef = useRef<HTMLInputElement>(null)
   const { fetchUrls } = useFetch()
+
   useEffect(() => {
     fetchUrls()
   }, [])
@@ -28,7 +30,8 @@ export default function Home () {
           label="URL"
         />
         <Button
-          className="w-full"
+          className="w-full bg-green-700 text-white py-2 px-4"
+          disabled={dbStatus !== 'on'}
           onPress={() => {
             if (
               inputRef.current !== null &&
